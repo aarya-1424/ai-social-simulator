@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-black text-white selection:bg-white selection:text-black;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+}
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-zinc-800 rounded-full;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-700;
+  }
+
+  .glossy-surface {
+    @apply bg-zinc-950/40 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+  }
+
+  .glossy-surface::after {
+    content: "";
+    @apply absolute -inset-[100%] bg-gradient-to-r from-transparent via-white/5 to-transparent -rotate-45 pointer-events-none;
+    transition: transform 0.6s ease;
+  }
+
+  .popping-card:hover::after {
+    transform: translateX(100%);
+  }
+
+  .bold-border {
+    @apply border-2 border-white shadow-[0_0_20px_rgba(255,255,255,0.1)];
+  }
+
+  .popping-card {
+    @apply border border-white/20 transition-all duration-300;
+  }
+  .popping-card:hover {
+    @apply border-white/60 -translate-y-1 shadow-[0_10px_30px_-10px_rgba(255,255,255,0.2)];
+  }
+}
